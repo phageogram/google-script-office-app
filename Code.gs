@@ -21,10 +21,10 @@ function getData() {
 
   var mainData = data.filter(row => row[0] === 'Main' && (row[2] != false || row[3] != false));
   var annexData = data.filter(row => row[0] === 'Annex' && (row[2] != false || row[3] != false));
-  var mainNames = [];
-  var annexNames = [];
+  //var mainNames = [];
+  //var annexNames = [];
 
-  for (i=0; i<mainData.length; i++) {
+  /*for (i=0; i<mainData.length; i++) {
     mainNames.push(mainData[i][1]);
   }
 
@@ -32,8 +32,9 @@ function getData() {
     annexNames.push(annexData[i][1])
   }
 
-  for (i=0; i < mainData.length; i++) {}
-
+  for (i=0; i < mainData.length; i++) {}*/
+  // the above code is currently idle, keeping for later functionality.
+  
   var result = {
     Main: mainData,
     Annex: annexData,
