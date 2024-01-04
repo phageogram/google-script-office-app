@@ -1,0 +1,56 @@
+<script>
+    google.script.run.withSuccessHandler(updatePicker).getOptions();
+  
+    function updatePicker(options) {
+      var select = document.getElementById('dynamicSelect');
+      select.innerHTML = ''; 
+  
+      options.forEach(function (option) {
+        var newOption = document.createElement('option');
+        newOption.text = option;
+        select.add(newOption);
+        });
+  
+      $('.selectpicker').selectpicker('refresh');
+    }
+  </script>
+  
+  <script>
+    google.script.run.withSuccessHandler(updateUI).getData();
+  
+    function updateUI(data) {
+      var mainTable = document.getElementById('Main');
+      var annexTable = document.getElementById('Annex');
+  
+      clearTable(mainTable);
+      clearTable(annexTable);
+  
+      populateTable(mainTable, data.Main);
+      populateTable(annexTable, data.Annex);
+    }
+  
+    function clearTable(table) {
+      var rowCount = table.rows.length;
+      for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+      }
+    }
+  
+    function populateTable(table, rowData) {
+      for (var i = 0; i < rowData.length; i++) {
+        var row = table.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+  
+  
+  
+        if (rowData[i][2] == true) {
+          cell1.innerHTML = rowData[i][1];
+          cell2.innerHTML = 'Office';
+        } else if (rowData[i][3] == true) {
+          cell1.innerHTML = rowData[i][1];
+          cell2.innerHTML = 'Home';
+        }
+      }
+    }
+  </script>
