@@ -34,7 +34,7 @@ function getData() {
 
   for (i=0; i < mainData.length; i++) {}*/
   // the above code is currently idle, keeping for later functionality.
-  
+
   var result = {
     Main: mainData,
     Annex: annexData,
@@ -91,6 +91,8 @@ function updateSheet(clockInStatus, action, selectedName, selectedWorkspace) {
   }
 }
 
+
+// Create sidebar and dialogue previews for testing
 function openSideBar() {
   var sheet = ss.getSheetByName('Employees')
   var data = sheet.getDataRange().getValues();
