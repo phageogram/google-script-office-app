@@ -1,5 +1,5 @@
 <script>
-  <!-- dynamically update select menu options -->
+  //dynamically update select menu options
     google.script.run.withSuccessHandler(updatePicker).getOptions();
   
     function updatePicker(options) {
@@ -17,9 +17,10 @@
   </script>
   
   <script>
-    <!-- updates app Ui with data from script, called on button click -->
-    <!-- This currently relies on reLoad function to refresh the page on every input-->
-    <!-- AJAX functionality to be added -->
+    /* updates app Ui with data from script, called on button click
+    This currently relies on reLoad function to refresh the page on every input
+    AJAX functionality to be added */
+    
     google.script.run.withSuccessHandler(updateUI).getData();
   
     function updateUI(data) {

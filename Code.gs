@@ -2,7 +2,7 @@ var ss = SpreadsheetApp.getActiveSpreadsheet();
 var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Employees');
 var data = sheet.getDataRange().getValues();
 
-
+// Trigger to add sidebar and dialogue preview options to the Sheets menu
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Display')
@@ -16,6 +16,8 @@ function doGet() {
   return template.evaluate().setTitle('OPDP Check In');
 }
 
+// Sorts Sheets data according to value of the first column ("building")
+// Called by client side function updateUi() in js.html
 function getData() {
   var data = sheet.getDataRange().getValues();
 
@@ -33,7 +35,7 @@ function getData() {
   }
 
   for (i=0; i < mainData.length; i++) {}*/
-  // the above code is currently idle, keeping for later functionality.
+  // the above comment block is currently idle, keeping for later functionality.
 
   var result = {
     Main: mainData,
@@ -43,6 +45,7 @@ function getData() {
   return result
 }
 
+// Used in reLoad() for reloading page. Will discard when AJAX functionality is added
 function getScriptURL() {
   return ScriptApp.getService().getUrl();
 }
@@ -52,16 +55,22 @@ function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
 
+// Called by getOptions()
 function getEmployeeNames() {
   var names = sheet.getRange(2, 2, sheet.getLastRow() - 1, 1).getValues();
   return names
 }
 
+// Returns names for dropdown menu select id = "dynamicSelect"
+// Need to combine getEmployeeNames and getOptions
 function getOptions() {
   var options = getEmployeeNames().flat();
   return options
 }
 
+
+// Sends data to sheet
+// Called by client-side clockIn() and clockOut() functions.
 function updateSheet(clockInStatus, action, selectedName, selectedWorkspace) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Employees");
   var buildingColumn = 1;
